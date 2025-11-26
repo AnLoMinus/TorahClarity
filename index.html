@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>TorahClarity – TC | בהירות התורה</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="TorahClarity – TC: מאגר בהירות התורה, מיפוי מסילות לימוד, שאלות לרב, הלכה, קבלה וחסידות בשפה בהירה.">
+  <style>
+    :root {
+      --bg: #050712;
+      --bg-alt: #0b0f1f;
+      --accent: #ffd75e;
+      --accent-soft: #ffeaa0;
+      --accent-strong: #ffb300;
+      --text: #f4f4f7;
+      --muted: #a7b0c4;
+      --card: #101528;
+      --border: #1f2740;
+      --shadow-soft: 0 20px 40px rgba(0,0,0,0.6);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --transition-fast: 0.2s ease-out;
+      --max-width: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #141a33 0, #050712 45%, #020309 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent-soft);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px 18px 40px;
+    }
+
+    header.site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 16px;
+      margin-bottom: 18px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(120deg, rgba(255,215,94,0.13), rgba(10,17,40,0.9));
+      border: 1px solid rgba(255,215,94,0.35);
+      box-shadow: var(--shadow-soft);
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: conic-gradient(from 210deg, #ffd75e, #fff1c0, #ffb300, #ffeaa0, #ffd75e);
+      box-shadow: 0 0 24px rgba(255,215,94,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #231500;
+      font-size: 18px;
+    }
+
+    .brand-text-main {
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand-text-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    nav.site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .nav-pill {
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,215,94,0.45);
+      background: rgba(4,5,15,0.7);
+      font-size: 12px;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+      color: var(--accent-soft);
+    }
+
+    .nav-pill:hover {
+      background: rgba(255,215,94,0.16);
+      transform: translateY(-1px);
+      box-shadow: 0 0 14px rgba(255,215,94,0.5);
+    }
+
+    main {
+      margin-top: 18px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.6fr);
+      gap: 26px;
+      align-items: center;
+      padding: 22px 20px;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, rgba(255,215,94,0.16), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(143,186,255,0.18), transparent 60%),
+                  linear-gradient(145deg, #070c1f, #02030a);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 4vw, 32px);
+      font-weight: 800;
+      margin: 0 0 10px;
+    }
+
+    .hero-highlight {
+      color: var(--accent);
+      text-shadow: 0 0 16px rgba(255,215,94,0.9);
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      border-radius: var(--radius-pill);
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      color: #1f1200;
+      box-shadow: 0 12px 26px rgba(255,215,94,0.65);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px rgba(255,215,94,0.9);
+    }
+
+    .btn-ghost {
+      background: rgba(6,8,22,0.9);
+      border-color: rgba(255,215,94,0.35);
+      color: var(--accent-soft);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,215,94,0.12);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(7,11,30,0.9);
+      border: 1px solid rgba(70,92,148,0.7);
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      padding: 16px 14px;
+      background: radial-gradient(circle at top, rgba(255,215,94,0.20), transparent 60%),
+                  linear-gradient(165deg, #0c1024, #050714);
+      border: 1px solid rgba(255,215,94,0.40);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero-card-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .hero-tag-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .hero-tag {
+      padding: 6px 8px;
+      border-radius: 12px;
+      background: rgba(4,7,22,0.9);
+      border: 1px solid rgba(255,215,94,0.35);
+    }
+
+    .hero-glow-orbit {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255,215,94,0.4);
+      top: -40px;
+      right: -40px;
+      opacity: 0.5;
+    }
+
+    .hero-glow-core {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffeaa0, transparent);
+      top: 28px;
+      right: 40px;
+      opacity: 0.75;
+      box-shadow: 0 0 48px rgba(255,215,94,0.9);
+    }
+
+    section {
+      margin-top: 32px;
+      padding: 20px 18px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(150deg, rgba(12,18,42,0.96), rgba(3,5,14,0.98));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    section h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    section h3 {
+      margin-top: 16px;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    ul {
+      padding-right: 20px;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11px;
+      margin-top: 6px;
+    }
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,215,94,0.3);
+      background: rgba(6,10,27,0.9);
+      color: var(--accent-soft);
+    }
+
+    .q-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .q-table th,
+    .q-table td {
+      border: 1px solid var(--border);
+      padding: 6px 8px;
+    }
+
+    .q-table th {
+      background: rgba(7,10,28,0.95);
+      font-weight: 600;
+    }
+
+    .q-table tbody tr:nth-child(even) {
+      background: rgba(7,9,24,0.85);
+    }
+
+    .psalm-box {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top, rgba(255,215,94,0.18), transparent 70%);
+      border: 1px dashed rgba(255,215,94,0.6);
+      font-size: 13px;
+    }
+
+    .rap-box {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: var(--radius-lg);
+      background: rgba(4,7,18,0.95);
+      border: 1px solid rgba(255,215,94,0.45);
+      font-size: 13px;
+      white-space: pre-line;
+    }
+
+    footer.site-footer {
+      margin-top: 26px;
+      padding: 16px 14px;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top, rgba(255,215,94,0.14), transparent 55%),
+                  linear-gradient(170deg, #050716, #020208);
+      border: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .footer-tag {
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,215,94,0.3);
+      color: var(--accent-soft);
+    }
+
+    @media (max-width: 780px) {
+      header.site-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-logo">TC</div>
+        <div>
+          <div class="brand-text-main">TorahClarity – TC</div>
+          <div class="brand-text-sub">בהירות התורה • Torah + Clarity • ClarityPortal – CP</div>
+        </div>
+      </div>
+      <nav class="site-nav">
+        <button class="nav-pill" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});">✨ מהות</button>
+        <button class="nav-pill" onclick="document.getElementById('maps').scrollIntoView({behavior:'smooth'});">🧭 מפות לימוד</button>
+        <button class="nav-pill" onclick="document.getElementById('ask-rav').scrollIntoView({behavior:'smooth'});">📜 שאלות לרב</button>
+        <button class="nav-pill" onclick="document.getElementById('paths').scrollIntoView({behavior:'smooth'});">📚 מסילות</button>
+        <button class="nav-pill" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">📬 יצירת קשר</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div>
+          <div class="hero-kicker">✨ Torah + Clarity • בהירות פנימית בלימוד התורה</div>
+          <h1 class="hero-title">
+            מאגר <span class="hero-highlight">בהירות התורה</span> – לומדים צלול, חיים מכוון.
+          </h1>
+          <p class="hero-sub">
+            TorahClarity – TC נבנה כדי לתת לך מה שתמיד חיפשת בלימוד:
+            מסילות ברורות, שאלות מסודרות לרב, מפות הבנה, וחיבור נקי בין הלכה, אגדה, חסידות וקבלה – בצורה מאורגנת, פשוטה ובהירה.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://github.com/AnLoMinus/TorahClarity" target="_blank" rel="noopener">
+              ⭐ GitHub Repo – TorahClarity
+            </a>
+            <a class="btn btn-ghost" href="https://anlominus.github.io/TorahClarity/" target="_blank" rel="noopener">
+              🌐 Live Site – TorahClarity Pages
+            </a>
+          </div>
+          <div class="hero-meta">
+            <span>📜 מוקד: בהירות לימוד, שאלות לרב, מסילות נפש</span>
+            <span>🧭 קיצור: TC • Template: ClarityPortal – CP</span>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="hero-glow-orbit"></div>
+          <div class="hero-glow-core"></div>
+          <div class="hero-card-title">מפת הבהירות של TorahClarity 🕯</div>
+          <div class="hero-card-sub">
+            ארבעה צירים מרכזיים לכל הלימוד:
+          </div>
+          <div class="hero-tag-grid">
+            <div class="hero-tag">
+              ✨ <strong>Essence</strong><br>
+              מהות התורה, חיבור לנשמה, יסודות האמונה.
+            </div>
+            <div class="hero-tag">
+              📘 <strong>Halacha</strong><br>
+              הלכה יומיומית, שבת, בית, קדושה – בשפה מדויקת ובהירה.
+            </div>
+            <div class="hero-tag">
+              🔮 <strong>Inner Torah</strong><br>
+              חסידות, קבלה, עשר ספירות ותיקון הנפש.
+            </div>
+            <div class="hero-tag">
+              🧭 <strong>Pathways</strong><br>
+              מסילות לימוד, מפות מושגים, עבודת היום־יום.
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="section-kicker">✨ מהות המיזם</div>
+        <h2>🕯 מה זה TorahClarity – TC?</h2>
+        <p>
+          <strong>TorahClarity – TC</strong> הוא מאגר שנועד לנקות את הערפל סביב לימוד התורה:
+          פחות בלבול, פחות עומס, יותר סדר, עומק ונקיות. כל נושא נבנה כמסילה ברורה –
+          <em>מהשאלה הראשונית עד להבנה המיושמת בחיים.</em>
+        </p>
+        <div class="two-col">
+          <div>
+            <h3>🎯 מטרות הליבה</h3>
+            <ul>
+              <li>להפוך לימוד מורכב – לנגיש, ברור ומדויק.</li>
+              <li>ליצור שפה אחת מחברת: הלכה, אגדה, חסידות וקבלה.</li>
+              <li>לתת ללומד מפה, לא רק מידע – מסלול עבודה אמיתי.</li>
+              <li>לחבר כל לימוד לתיקון הנפש ולכוונה פנימית.</li>
+            </ul>
+            <div class="badge-row">
+              <span class="badge">🧠 בהירות מחשבה</span>
+              <span class="badge">💓 חיבור ללב</span>
+              <span class="badge">📜 עוגן במקורות</span>
+              <span class="badge">🚪 מסילות לעשייה</span>
+            </div>
+          </div>
+          <div>
+            <h3>📂 מבנה התוכן הכללי</h3>
+            <ul>
+              <li><strong>Essence of Torah</strong> – יסודות, אמונה, מבט כללי.</li>
+              <li><strong>Halacha Clarity</strong> – הלכות מסודרות, מתומצתות ובהירות.</li>
+              <li><strong>Mystical Insights</strong> – קבלה, חסידות, עשר ספירות.</li>
+              <li><strong>Daily Path</strong> – עבודה יומיומית, תיקון המידות, כלים מעשיים.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- MAPS -->
+      <section id="maps">
+        <div class="section-kicker">🧭 מפות ומסילות</div>
+        <h2>🧭 Maps of Clarity – מפות בהירות לתורה</h2>
+        <p>
+          כאן נכנסים כל ה<strong>תרשימי זרימה, המפות, השלבים והטבלאות</strong>
+          שהופכים לימוד עמוק למסלול ברור. כל פרק יכול לקבל:
+        </p>
+        <ul>
+          <li>💡 מפת מושגים – מונחי יסוד, קשרים, מקורות עיקריים.</li>
+          <li>🧱 מסלול לימוד – מאיפה להתחיל, איך להעמיק, מה השלב הבא.</li>
+          <li>🪜 מדרגות עבודה – מה קורה בלב, לא רק בשכל.</li>
+          <li>📌 נקודות יישום – איך זה נוגע לחיים שלי היום.</li>
+        </ul>
+      </section>
+
+      <!-- ASK RAV -->
+      <section id="ask-rav">
+        <div class="section-kicker">📜 שאלות לרב</div>
+        <h2>📜 TorahClarity Q&A – שאלות מסודרות לרב</h2>
+        <p>
+          חלק מרכזי ב-TorahClarity – TC הוא <strong>שאלון קבוע לרב</strong>, שמאפשר לבנות תשובות
+          מסודרות למאגר. כל שאלה ממוקמת, ממוספרת, וקשורה לנושא במאגר.
+        </p>
+        <table class="q-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>קטגוריה</th>
+              <th>שאלה לרב (תבנית)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>אמונה</td>
+              <td>מהי הנקודה המרכזית שצריך להתחזק בה כיום באמונה, לפי הדור שלנו?</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>הלכה יומיומית</td>
+              <td>מהן שלוש ההלכות היומיומיות שהכי חשוב לדעת ולחזור עליהן שוב ושוב?</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>שבת קודש</td>
+              <td>איזו הסתכלות פנימית נכונה על שבת תעזור להאיר את ההלכות והמנהגים?</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>תפילה</td>
+              <td>איך לבנות כוונה פשוטה, יציבה וקבועה בשלוש תפילות ביום?</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>קבלה / חסידות</td>
+              <td>מהו הבסיס הבטוח להתחלה בלימוד קבלה וחסידות לאדם מן השורה?</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>תיקון המידות</td>
+              <td>איזו מידה לעבוד עליה ראשונה בדור שלנו, ואיך להתחיל בפועל?</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>לימוד תורה</td>
+              <td>איך לבנות סדר לימוד מאוזן בין חומש, גמרא, הלכה וחסידות?</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>שלום בית</td>
+              <td>מהן שלוש היסודות הרוחניים לשלום בית איתן לאורך זמן?</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>פרנסה</td>
+              <td>איך לחבר בין עולמה של הפרנסה לבין ביטחון בה' ועולמה של תורה?</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>דור הגאולה</td>
+              <td>איך נכון להסתכל על המציאות כיום מתוך עין של גאולה ותיקון?</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="psalm-box">
+          🕯 <strong>פסוק מתאים:</strong><br>
+          <em>“גַּל־עֵינַי וְאַבִּיטָה, נִפְלָאוֹת מִתּוֹרָתֶךָ”</em> (תהילים קי״ט, י״ח)<br>
+          זהו לב המיזם: פתיחת העיניים לנפלאות התורה, בבהירות.
+        </div>
+
+        <div class="rap-box">
+🔥 פזמון ראפ – TorahClarity – TC 🔥  
+TC מדליק לי את הראש – זו בהירות לתורה 📜  
+כל מילה הופכת אור, כל פסוק נהיה תנועה 🎧  
+מבול של סימני שאלה, והכול נהיה קו־ישר 🧭  
+TorahClarity בלב – שם אני בוחר להתמכר 🔥
+        </div>
+      </section>
+
+      <!-- PATHS -->
+      <section id="paths">
+        <div class="section-kicker">📚 מסילות לימוד</div>
+        <h2>📚 Pathways of Torah – מסילות הבנה ויישום</h2>
+        <p>
+          כאן אתה בונה את כל <strong>“מסילות ה-TC”</strong> – מסלולי לימוד מדורגים, מאפס בהירות עד חיבור עמוק.
+        </p>
+        <ul>
+          <li>🔹 <strong>מסילה 1 – יסודות</strong>: אמונה, ברכות, שבת, לימוד יומי קצר.</li>
+          <li>🔹 <strong>מסילה 2 – העמקה</strong>: הלכה מסודרת, פרקי תפילה, עבודה פנימית.</li>
+          <li>🔹 <strong>מסילה 3 – פנימיות</strong>: חסידות, עשר ספירות, תיקון המידות בעומק.</li>
+          <li>🔹 <strong>מסילה 4 – שליחות</strong>: איך להפוך את האור שקיבלת – לתרומה לעולם.</li>
+        </ul>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-kicker">📬 יצירת קשר</div>
+        <h2>📬 Contact & Credits – קשר וקרדיטים</h2>
+        <p>
+          כל מי שרוצה להתחבר, לשתף פעולה, או להרחיב את המאגר:
+        </p>
+        <ul>
+          <li>🐙 GitHub User: <a href="https://github.com/AnLoMinus" target="_blank" rel="noopener">AnLoMinus</a></li>
+          <li>💎 Project: <strong>TorahClarity – TC</strong> • Template: <strong>ClarityPortal – CP</strong></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-row">
+        <div>
+          © TorahClarity – TC • ClarityPortal – CP • AnLoMinus x ChatVision Studio  
+          📅 תאריך לועזי: 26.11.2025 • 📆 תאריך עברי: ו׳ בכסלו ה׳תשפ״ו • ⏰ שעה: 01:27 (Asia/Jerusalem)
+        </div>
+      </div>
+      <div class="footer-row">
+        <div class="footer-tags">
+          <span class="footer-tag">#TorahClarity</span>
+          <span class="footer-tag">#TC</span>
+          <span class="footer-tag">#ClarityPortal</span>
+          <span class="footer-tag">#AnLoMinus</span>
+          <span class="footer-tag">#תורה</span>
+          <span class="footer-tag">#בהירות_התורה</span>
+        </div>
+        <div>
+          🔢 מספר המידות: 10 מסילות בהירות ראשיות (ניתן להרחבה לפי הצורך).
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
