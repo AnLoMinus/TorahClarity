@@ -1,5 +1,8 @@
 # 🌟 **TorahClarity – TC | בהירות התורה**
 
+<img width="1536" height="1024" alt="Torah Scroll Under Cosmic Light" src="https://github.com/user-attachments/assets/772a8409-5764-463e-9957-36d6955c4fa3" />
+
+
 ### ✨ הצעה רשמית למאגר חדש (TC)
 
 ---
